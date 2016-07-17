@@ -4,17 +4,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url('^$', views.index),
-    url('^login/$', views.twitter_login),
-    url('^register/$', views.register, name='register_twitter'),
-    url('^login/process/$', views.login_process, name='login_process'),
-    url('^logout/$', views.twitter_logout),
-    url('^tweet/$', views.tweet),
-    url('^page/(?P<page>\\d+)/$', views.index),
-    url('^configuracion/$', views.conf),
-    url('^borrar/(?P<tweet_id>\\d+)/$', views.borrar),
-    url('^profile/$', views.profile),
-    url('^profile/page/(?P<page>\\d+)/$', views.profile),
+    url(r'^$', views.index),
+    url(r'^login/$', views.twitter_login),
+    url(r'^register/$', views.register, name='register_twitter'),
+    url(r'^login/process/$', views.login_process, name='login_process'),
+    url(r'^logout/$', views.twitter_logout),
+    url(r'^tweet/$', views.tweet),
+    url(r'^page/(?P<page>\\d+)/$', views.index),
+    url(r'^configuracion/$', views.conf),
+    url(r'^borrar/(?P<tweet_id>\\d+)/$', views.borrar),
+    url(r'^profile/$', views.profile),
+    url(r'^profile/page/(?P<page>\\d+)/$', views.profile),
 ]
 
 if settings.DEBUG:
