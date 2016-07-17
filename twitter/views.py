@@ -219,7 +219,6 @@ def tweet(request):
 def conf(request):
     u = request.user
     p = get_object_or_404(Profile, user = u)
-    #p = Profile.get_profile(u.id)
     try:
         if request.POST['procesa'] == 'profile':
             u.first_name = request.POST['firstname']
@@ -228,9 +227,13 @@ def conf(request):
 
             p.ubicacion = request.POST['ubicacion']
             p.frase = request.POST['bio']
-            #p.avatar = request.POST['avatar']
-            p.logo = request.FILES['logo']
+            ##############################
+            #p.logo = request.FILES['logo']
+            if 'logo' in request.FILES:
+                p.logo = request.FILES['logo']
+            ##############################
             p.save()
+
         elif request.POST['procesa'] == 'pass':
             if not u.check_password(request.POST['oldpass']):
                 return render_to_response('twitter/conf.html', {
