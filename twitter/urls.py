@@ -6,8 +6,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^login/$', views.twitter_login),
-    url(r'^register/$', views.register),
-    url(r'^login/process/$', views.login_process),
+    #url(r'^register/$', views.register),
+    url(r'^register/', views.register),
+    #url(r'^login/process/$', views.login_process),
+    url(r'^login/process/', views.login_process),
     url(r'^logout/$', views.twitter_logout),
     url(r'^tweet/$', views.tweet),
     url(r'^page/(?P<page>\\d+)/$', views.index),
