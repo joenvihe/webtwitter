@@ -181,13 +181,11 @@ def login_process(request, page = 1):
             'prev': int(page) - 1,
             'tweets': tweets,
         }, RequestContext(request))
-    #return HttpResponseRedirect(reverse('twitter.views.index'))
     return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
 def twitter_logout(request):
     auth.logout(request)
-    #return HttpResponseRedirect(reverse('twitter.views.index'))
     return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
@@ -195,7 +193,6 @@ def tweet(request):
     try:
         content = request.POST['content']
     except KeyError:
-        #return HttpResponseRedirect(reverse('twitter.views.index'))
         return HttpResponseRedirect(reverse('twitter_inicio'))
     try:
         respuesta = int(request.POST['respuesta'])
@@ -216,7 +213,6 @@ def tweet(request):
             respuesta=respuesta,
         )
     t.save()
-    #return HttpResponseRedirect(reverse('twitter.views.index'))
     return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
@@ -252,7 +248,6 @@ def conf(request):
                 u.set_password(request.POST['pass'])
                 u.save()
                 logout(request)
-                #return HttpResponseRedirect(reverse('twitter.views.index'))
                 return HttpResponseRedirect(reverse('twitter_inicio'))
             else:
                 return render_to_response('twitter/conf.html',{
