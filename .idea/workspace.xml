@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitter/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="60" />
+            <state relative-caret-position="272">
+              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitter/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="248" column="24" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -152,8 +152,8 @@
         <option value="$PROJECT_DIR$/twitter/templates/twitter/profile.html" />
         <option value="$PROJECT_DIR$/twitter/models.py" />
         <option value="$PROJECT_DIR$/webtwitter/settings.py" />
-        <option value="$PROJECT_DIR$/twitter/urls.py" />
         <option value="$PROJECT_DIR$/twitter/views.py" />
+        <option value="$PROJECT_DIR$/twitter/urls.py" />
       </list>
     </option>
   </component>
@@ -756,22 +756,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitter/urls.py">
+    <entry file="file://$PROJECT_DIR$/twitter/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="60" />
+        <state relative-caret-position="68">
+          <caret line="248" column="24" selection-start-line="248" selection-start-column="24" selection-end-line="248" selection-end-column="24" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitter/views.py">
+    <entry file="file://$PROJECT_DIR$/twitter/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
