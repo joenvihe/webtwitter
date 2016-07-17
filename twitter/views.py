@@ -181,19 +181,22 @@ def login_process(request, page = 1):
             'prev': int(page) - 1,
             'tweets': tweets,
         }, RequestContext(request))
-    return HttpResponseRedirect(reverse('twitter.views.index'))
+    #return HttpResponseRedirect(reverse('twitter.views.index'))
+    return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
 def twitter_logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('twitter.views.index'))
+    #return HttpResponseRedirect(reverse('twitter.views.index'))
+    return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
 def tweet(request):
     try:
         content = request.POST['content']
     except KeyError:
-        return HttpResponseRedirect(reverse('twitter.views.index'))
+        #return HttpResponseRedirect(reverse('twitter.views.index'))
+        return HttpResponseRedirect(reverse('twitter_inicio'))
     try:
         respuesta = int(request.POST['respuesta'])
     except (KeyError, ValueError):
@@ -213,7 +216,8 @@ def tweet(request):
             respuesta=respuesta,
         )
     t.save()
-    return HttpResponseRedirect(reverse('twitter.views.index'))
+    #return HttpResponseRedirect(reverse('twitter.views.index'))
+    return HttpResponseRedirect(reverse('twitter_inicio'))
 
 
 def conf(request):
@@ -248,7 +252,8 @@ def conf(request):
                 u.set_password(request.POST['pass'])
                 u.save()
                 logout(request)
-                return HttpResponseRedirect(reverse('twitter.views.index'))
+                #return HttpResponseRedirect(reverse('twitter.views.index'))
+                return HttpResponseRedirect(reverse('twitter_inicio'))
             else:
                 return render_to_response('twitter/conf.html',{
                     'mensaje' : 'Las contraseñas no coinciden',
@@ -284,7 +289,7 @@ def borrar(request, tweet_id):
 	if t.user == request.user or request.user.is_staff: #El usuario actual es el propietario del tweeet
 		t.activo = False
 		t.save()
-	return HttpResponseRedirect(reverse('twitter.views.index'))
+	return HttpResponseRedirect(reverse('twitter_inicio'))
 
 def profile(request, page = 1):
 	if page < 2:
