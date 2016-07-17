@@ -1,0 +1,29 @@
+{% extends 'twitter/base.html' %}
+{% load staticfiles %}
+
+{% block contenido %}
+<style>
+.perfil-grande
+{
+	float: left;
+	height: 75px;
+	margin: 5px;
+	width: 75px;
+	border-radius: 15px;
+}
+</style>
+<div id="profile" class="span5 seccion">
+<section>
+	<header>
+		<img src="{% if profile.logo.url %}{{ profile.logo.url }}{% else %}{{ STATIC_URL }}'twitter/default.png'{% endif %}" class="perfil-grande"><h2>{{ user.get_full_name }} (@{{ user.username }})</h2>
+		<h3>{{ profile.ubicacion }}</h3>
+		<p>
+			{{ profile.frase|linebreaksbr }}
+		</p><p>
+			Joined on {{ user.date_joined }}<br>
+			Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+		</p>
+	</header>
+</section>
+</div>
+{% endblock %}

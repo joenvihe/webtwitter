@@ -1,0 +1,131 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>{% block titulo %}JOENVIHE: Twitter{% endblock %}</title>
+	<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+	<link href="{% static 'twitter/css/bootstrap.min.css' %}" rel="stylesheet">
+	<style>
+		body
+		{
+			padding-top: 60px;
+			background-color: #CCC;
+		}
+		.seccion
+		{
+			background-color: rgba(255,255,255,0.8);
+			border-radius: 10px;
+		}
+		.seccion *
+		{
+			padding: 3px;
+		}
+		input
+		{
+			width: 200px;
+		}
+	</style>
+	<link href="{% static 'twitter/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+	<link href="{% static 'twitter/css/perfil.css' %}" rel="stylesheet">
+	<script src="{% static 'twitter/js/jquery.min.js' %}"></script>
+	<script src="{% static 'twitter/js/bootstrap.min.js' %}"></script>
+	{% if logueado %}
+		<script type="text/javascript">
+			user = '{{ logueado.username|escapejs }}';
+			csrf = '{{ csrf_token }}';
+			staticurl = '{{ STATIC_URL }}';
+		</script>
+		<script src="{% static 'twitter/js/cuentachars.js' %}" type="text/javascript"></script>
+	{% endif %}
+	<script src="{% static 'twitter/js/chat.js' %}" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'twitter/css/perfil.css' %}">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/">Twitter</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="/"><i class="icon-home icon-white"></i>Home</a></li>
+						<li><a data-toggle="modal" href="#contacto"><i class="icon-envelope icon-white"></i>Contacto</a></li>
+						{% if logueado %}
+							<li>
+								<div class="btn-group">
+							  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+							    @{{ logueado.email }}
+							    <span class="caret"></span>
+							  </a>
+							  <ul class="dropdown-menu">
+							    <li><a href="/configuracion/"><i class="icon-user"></i>Configuración</a></li>
+							    <li class="divider"></li>
+							    <li><a href="/logout/"><i class="icon-off"></i>Cerrar sesión</a></li>
+							  </ul>
+							</div>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="modal hide fade" id="contacto">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Contacto con el autor</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+    	E-Mail: <a href="mailto:enrique@vicenteh.com">enrique@vicenteh.com</a><br>
+    	Web: <a href="http://joenvihe.github.io" target="_blank">joenvihe.github.io</a><br>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
+  </div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="span{% if logueado %}3{% else %}3{% endif %}">
+			<h2>Bienvenido a Twitter.</h2>
+			<p>ESTO ES UN TWITTER DE PRUEBA CUYO USUARIO ES EL CORREO ELECTRONICO</p>
+		</div>
+
+		{% block contenido %}
+		{{ mensaje }}
+		{% endblock %}
+
+		<div class="span3 seccion">
+			{% if logueado %}
+				<h2>{% block fasttweet %}<i class="icon-edit"></i>Tweet rápido{% endblock %}</h2>
+				<form action="/tweet/" method="post">
+					{% csrf_token %}
+					{% block respuesta %}{% endblock %}
+					<p>
+						<textarea id="textarea" name="content" maxlength="140" rows="5" cols="50">{% block textarea %}{% endblock %}</textarea>
+						<span id="count" class="label label-info">140</span><br>
+						<input class="btn btn-success" type="submit" value="Tweetear">
+					</p>
+				</form>
+				<section>
+					<header>
+						<img src="{% if p.logo %}{{ p.logo.url }}{% endif %}" class="perfil">
+
+						<h3>{{ logueado.get_full_name }} (<a href="/profile/">@{{ logueado }}</a>)</h3>
+						<div class="pagination" style="font-size: 11px">
+							<ul>
+								<li><a href="/profile/">{{ ntweets }} tweet{{ ntweets|pluralize }}</a></li>
+							</ul>
+						</div>
+					</header>
+				</section>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container"><p>Twitter <a href="#contacto" data-toggle="modal">joenvihe</a></p></div>
+</footer>
+</body>
+</html>

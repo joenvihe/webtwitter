@@ -1,0 +1,37 @@
+{% extends 'twitter/base.html'%}
+{% block contenido %}
+		{% include 'twitter/tweets_libre.html' %}
+		<div class="span3 seccion"  >
+			<h2>Login</h2>
+			<p>
+				<form class="form-inline" action="/login/process/" method="post">
+					{{ mensaje_login }}
+					{% csrf_token %}
+					<input type="text" name="username" placeholder="E-Mail" value="" id="username"><br>
+					<input type="password" name="password" placeholder="Contraseña" value="" id="password"><br>
+					<input class="btn btn-primary" type="submit" value="Log in">
+				</form>
+			</p>
+			{% if exito == '0' %}
+				<h2>Registro</h2>
+			{% endif %}
+			<p>
+				{% if exito == '0' %}
+					{{ mensaje_register }}
+				{% else %}
+					{{ mensaje_register }}<br>Registre un nuevo usuario <a href="/login/">aqui</a>
+				{% endif%}
+			  	{% for field in form %}
+    				{{field.error}}
+				{% endfor %}
+				<form action="/register/" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="procesa" value="1">
+			  		{{form.as_p}}
+					{% if exito == '0' %}
+						<input class="btn btn-primary" type="submit" value="Registrarse">
+					{% endif %}
+				</form>
+			</p>
+		</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'twitter/base.html' %}
+{% block title %}Configuración de usuario - Twitter{% endblock %}
+{% block contenido %}
+	{{ mensaje|safe }}
+<div class="span3 seccion">
+	<h2><i class="icon-edit"></i>Configuración</h2>
+	<form action="/configuracion/" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="procesa" value="pass">
+		<input type="password" name="oldpass" placeholder="Ingresa tu contraseña actual"><br>
+		<input type="password" name="pass" placeholder="Contraseña deseada">
+		<input type="password" name="pass2" placeholder="Repite la contraseña deseada"><br>
+		<input class="btn  btn-primary" type="submit" value="Cambiar contraseña">
+	</form>
+	<form action="/configuracion/" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type="hidden" name="procesa" value="profile">
+		<input type="password" name="oldpass" placeholder="Ingresa tu contraseña actual"><br>
+		<input type="text" name="firstname" placeholder="Nombre" value="{{ nombre }}">
+		<input type="text" name="lastname" placeholder="Apellido" value="{{ apellido }}"><br>
+		<input type="text" name="ubicacion" placeholder="Ubicacion" value="{{ ubicacion }}"><br>
+		<textarea placeholder="Biografia corta(160 caracteres): " name="bio" maxlength="140" rows="5">{{ bio }}</textarea><br>
+		<input type="file" class="" placeholder="Logo" name="logo" value="{{ logo }}">
+		<input class="btn  btn-primary" type="submit" value="Cambiar configuración">
+	</form>
+</div>
+{% endblock %}
