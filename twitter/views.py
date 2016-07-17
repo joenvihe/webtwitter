@@ -262,7 +262,7 @@ def conf(request):
                     'logueado' : request.user,
                     'ntweets' : len(Tweet.objects.filter(user = request.user, activo = True)),
                     }, RequestContext(request))
-        return HttpResponseRedirect(reverse('twitter.views.conf'))
+        return HttpResponseRedirect(reverse('twitter_config'))
     except KeyError:
         return render_to_response('twitter/conf.html',{
             'p' : Profile.objects.get(user = request.user),

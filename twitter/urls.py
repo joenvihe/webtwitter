@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^logout/$', views.twitter_logout),
     url(r'^tweet/$', views.tweet),
     url(r'^page/(?P<page>\\d+)/$', views.index),
-    url(r'^configuracion/$', views.conf),
+    url(r'^configuracion/$', views.conf,name='twitter_config'),
     url(r'^borrar/(?P<tweet_id>\\d+)/$', views.borrar),
     url(r'^profile/$', views.profile),
     url(r'^profile/page/(?P<page>\\d+)/$', views.profile),
