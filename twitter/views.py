@@ -219,20 +219,8 @@ def tweet(request):
 def conf(request):
     u = request.user
     p = get_object_or_404(Profile, user = u)
+    #p = Profile.get_profile(u.id)
     try:
-        if not u.check_password(request.POST['oldpass']):
-            return render_to_response('twitter/conf.html',{
-                'mensaje' : '<h3>Introduzca su contraseña actual correctamente</h3>',
-                'nombre' : u.first_name,
-                'apellido' : u.last_name,
-                'email' : u.email,
-                'ubicacion' : p.ubicacion,
-                'bio' : p.frase,
-                'logo': p.logo,
-                'logueado' : request.user,
-                'ntweets' : len(Tweet.objects.filter(user = request.user, activo = True)),
-                'p' : Profile.objects.get(user = request.user),
-                }, RequestContext(request))
         if request.POST['procesa'] == 'profile':
             u.first_name = request.POST['firstname']
             u.last_name = request.POST['lastname']
@@ -244,6 +232,20 @@ def conf(request):
             p.logo = request.FILES['logo']
             p.save()
         elif request.POST['procesa'] == 'pass':
+            if not u.check_password(request.POST['oldpass']):
+                return render_to_response('twitter/conf.html', {
+                    'mensaje': '<h3>Introduzca su contraseña actual correctamente</h3>',
+                    'nombre': u.first_name,
+                    'apellido': u.last_name,
+                    'email': u.email,
+                    'ubicacion': p.ubicacion,
+                    'bio': p.frase,
+                    'logo': p.logo,
+                    'logueado': request.user,
+                    'ntweets': len(Tweet.objects.filter(user=request.user, activo=True)),
+                    'p': Profile.objects.get(user=request.user),
+                }, RequestContext(request))
+
             if request.POST['pass'] == request.POST['pass2']:
                 u.set_password(request.POST['pass'])
                 u.save()

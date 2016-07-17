@@ -15,7 +15,6 @@
 	<form action="/configuracion/" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<input type="hidden" name="procesa" value="profile">
-		<input type="password" name="oldpass" placeholder="Ingresa tu contraseña actual"><br>
 		<input type="text" name="firstname" placeholder="Nombre" value="{{ nombre }}">
 		<input type="text" name="lastname" placeholder="Apellido" value="{{ apellido }}"><br>
 		<input type="text" name="ubicacion" placeholder="Ubicacion" value="{{ ubicacion }}"><br>

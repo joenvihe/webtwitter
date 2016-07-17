@@ -51,6 +51,7 @@ class Profile(models.Model):
     avatar = models.CharField(max_length = 256)
     logo = models.FileField(null=True,blank=True,default='default.jpg')
 
+
 class CustomUserManager(BaseUserManager):
 
     def _create_user(self, email, password,
